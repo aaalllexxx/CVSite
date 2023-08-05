@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="/static/css/account/main.css">
+    </head>
+    <body>
+        <div class="head">
+            <div class="head_inner">
+                <div class="image_mask">
+                    <img src="{{user.image}}" alt="logo" class="image">
+                </div>
+                <div class="right">
+                    <p class="name">{{user.name}} <span style="font-weight: 300">#{{user.id}}</span></p>
+                    <p class="points">{{user.points}} points</p>
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <h2 class="title">Feedback</h2>
+            <div class="button">
+                <a href="#" class="button_link">Оставить вопрос</a>
+            </div>
+            <div class="button">
+                <a href="#" class="button_link">Чат</a>
+            </div>
+            <h2 class="title">Баллы</h2>
+            <div class="button">
+                <a href="/share" class="button_link">Поделиться баллами</a>
+            </div>
+            <h2 class="title">Аккаунт</h2>
+            <div class="button">
+                <a href="#" class="button_link">Редактировать</a>
+            </div>
+            <div class="button">
+                <a href="#" class="button_link" style="color: #da0101">Удалить</a>
+            </div>
+        </div>
+    </body>
+    <style>
+        .head {
+            background-image: url("{{user.bg_image}}");
+            background-position: 0 -300px;
+        }
+    </style>
+</html>

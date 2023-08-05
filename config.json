@@ -1,0 +1,10 @@
+{
+  "debug": 1,
+  "screenImportPath": "screens",
+  "routes": {
+    "/": "HomeScreen",
+    "/index": "HomeScreen",
+    "/account": "AccountScreen",
+    "/share": "ShareScreen"
+  }
+}
