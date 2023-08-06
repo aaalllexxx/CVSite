@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>{{user.name}} - share points</title>
         <link rel="stylesheet" href="/static/css/main.css">
         <link rel="stylesheet" href="/static/css/account/main.css">
         <link rel="stylesheet" href="/static/css/account/form.css">
@@ -37,10 +37,6 @@
     {% include 'micro_sites/users/styles.html' %}
 
     <style>
-        .head {
-            background-image: url("{{user.bg_image}}");
-            background-position: 0 -300px;
-        }
         .error {
             color: red;
             text-align: center;

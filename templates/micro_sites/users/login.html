@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>AlexPoints - Login</title>
+        <link rel="stylesheet" href="/static/css/main.css">
+        <link rel="stylesheet" href="/static/css/account/main.css">
+        <link rel="stylesheet" href="/static/css/account/form.css">
+    </head>
+    <body>
+        <div class="content">
+            <form action="/user/login" method="post" class="form">
+                {% if get_flashed_messages %}
+                <p class="error">{{get_flashed_messages()[0]}}</p>
+                {% endif %}
+                <h1 class="login">Log in</h1>
+                <input type="text" name="login" placeholder="Введите имя пользователя..." class="input" required>
+                <input type="password" name="password" placeholder="Введите пароль.." class="input" required>
+                <div class="bottom">
+                    <a href="/" class="back">Назад</a>
+                    <input type="submit" class="form_button">
+                </div>
+
+            </form>
+        </div>
+    </body>
+
+    <style>
+        .error {
+            color: red;
+            text-align: center;
+            padding: 5px;
+            font-size: calc(1.2 * var(--index));
+        }
+        .login {
+            color: #3d3d3d;
+            text-align: center;
+            margin: 10px;
+        }
+        .content {
+            height: 100vh;
+        }
+    </style>
+</html>

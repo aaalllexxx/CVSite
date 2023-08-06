@@ -12,7 +12,9 @@ class ShareScreen(Screen):
     }
 
     def main(self):
-        user = get_user(request.cookies) or get_user_by_id(1)
+        user = get_user(request.cookies)
+        if not user:
+            return redirect("/user/login")
         if request.method == "POST":
             form = request.form
             if form:

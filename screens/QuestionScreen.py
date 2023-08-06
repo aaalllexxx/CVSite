@@ -17,6 +17,8 @@ class QuestionScreen(Screen):
 
     def main(self):
         user = get_user(request.cookies)
+        if not user:
+            return redirect("/user/login")
         if request.method == "POST":
             form = request.form
             if form:
