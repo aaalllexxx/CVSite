@@ -14,3 +14,8 @@ class User(db.Model):
     points = db.Column(db.Integer, default=0)
     password = db.Column(db.String(512))
     bg_image = db.Column(db.String(512))
+    Hav = db.Column(db.Integer, default=0)
+    Vav = db.Column(db.Integer, default=0)
+    Sav = db.Column(db.Integer, default=1)
+    Hbg = db.Column(db.Integer, default=0)
+    Vbg = db.Column(db.Integer, default=0)

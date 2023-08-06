@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/account/main.css">
+    <link rel="stylesheet" href="/static/css/account/form.css">
+    <link rel="stylesheet" href="/static/css/account/edit.css">
+</head>
+<body>
+    <div class="head">
+        <div class="head_inner">
+            <div class="image_mask">
+                <img src="{{user.image}}" alt="logo" class="image">
+            </div>
+            <div class="right">
+                <p class="name">{{user.name}} <span style="font-weight: 300">#{{user.id}}</span></p>
+                <p class="points">{{user.points}} points</p>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <form action="/user/edit" class="form" method="post" enctype="multipart/form-data">
+            <h4 class="description">Режим превью. Чтобы сохранить изменения, нажмите "отправить"</h4>
+            <input type="text" name="name" class="input" placeholder="Ведите имя..." value="{{user.name}}" id="name_input">
+            <input type="file" name="profile_image" class="file_input" onchange="loadFile(event)" id="profile_image_input">
+            <input type="number" name="Hav" value="{{user.Hav}}" id="Hav" class="input" placeholder="Горизонтальный отступ для аватарки">
+            <input type="number" name="Vav" value="{{user.Vav}}" id="Vav" class="input" placeholder="Вертикальный отступ для аватарки">
+            <input type="number" name="Sav" value="{{user.Sav}}" id="Sav" class="input" placeholder="Размер аватарки" step="0.05" value="1" min="1">
+            <input type="file" name="bg_image" class="file_input" onchange="loadFileBg(event)" id="bg_image_input">
+            <input type="number" name="Hbg" value="{{user.Hbg}}" id="Hbg" class="input" placeholder="Горизонтальный отступ для фона">
+            <input type="number" name="Vbg" value="{{user.Vbg}}" id="Vbg" class="input" placeholder="Вертикальный отступ для фона">
+            <div class="bottom">
+                <a href="/user/account" class="back">Назад</a>
+                <input type="submit" class="form_button">
+            </div>
+        </form>
+
+    </div>
+</body>
+
+<style>
+    .description {
+        color: #3a3a3a;
+        margin: 5px;
+    }
+
+    #bg_image_input:before {
+        content: "Выберите фото фона"
+    }
+
+    .head {
+        background-image: url("{{user.bg_image}}");
+        background-position: 0 -300px;
+    }
+
+    .error {
+        color: red;
+        text-align: center;
+        padding: 5px;
+        font-size: calc(1.2 * var(--index));
+    }
+
+</style>
+<script>
+    var loadFile = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.querySelector('.image');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+    let name = document.querySelector(".name")
+    let input = document.querySelector("#name_input")
+    setInterval(() => {
+        name.innerHTML = input.value
+    }, 100)
+    var loadFileBg = function (event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.querySelector('.head');
+            output.style.backgroundImage = `url('${reader.result}')`;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+
+    let profile_photo = document.querySelector(".image"),
+        background_block = document.querySelector(".head");
+
+    setInterval(() => {
+        let hor_input_av = document.querySelector("#Hav").valueAsNumber || 0,
+            vert_input_av = -document.querySelector("#Vav").valueAsNumber || 0,
+            scale_input_av = document.querySelector("#Sav").valueAsNumber || 0;
+        profile_photo.setAttribute("style", `transform: translate(${hor_input_av}px, ${vert_input_av}px) scale(${scale_input_av}, ${scale_input_av})`)
+
+    }, 100)
+    setInterval(() => {
+        let hor_input_bg = document.querySelector("#Hbg").valueAsNumber || 0,
+            vert_input_bg = document.querySelector("#Vbg").valueAsNumber || 0;
+        background_block.style.backgroundPosition = `${hor_input_bg}px ${vert_input_bg}px`
+
+    }, 100)
+
+
+</script>
+</html>

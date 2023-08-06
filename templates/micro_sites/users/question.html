@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/account/main.css">
+    <link rel="stylesheet" href="/static/css/account/form.css">
+    <link rel="stylesheet" href="/static/css/account/question.css">
+</head>
+<body>
+<div class="head">
+    <div class="head_inner">
+        <div class="image_mask">
+            <img src="{{user.image}}" alt="logo" class="image">
+        </div>
+        <div class="right">
+            <p class="name">{{user.name}} <span style="font-weight: 300">#{{user.id}}</span></p>
+            <p class="points">{{user.points}} points</p>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <form action="/user/question" class="form" method="post">
+        {% if get_flashed_messages() %}
+            {% with message = get_flashed_messages(with_categories=true)[0] %}
+                {% if message[0] != "success" %}
+                    <p class="error">{{message[1]}}</p>
+                {% else %}
+                    <p class="success">{{message[1]}}</p>
+                {% endif %}
+            {% endwith %}
+        {% endif %}
+        <input type="text" name="theme" class="input" placeholder="Введите тему вопроса..." required>
+        <div class="question_input">
+            <input type="text" name="message" class="input" placeholder="Введите вопрос..." required maxlength="256">
+            <span class="indicator">256</span>
+        </div>
+        <div class="bottom">
+            <a href="/user/account" class="back">Назад</a>
+            <input type="submit" class="form_button">
+        </div>
+    </form>
+    {% include 'micro_sites/users/styles.html' %}
+
+</div>
+</body>
+<style>
+    .head {
+        background-image: url("{{user.bg_image}}");
+        background-position: 0 -300px;
+    }
+
+    .indicator {
+        position: absolute;
+        font-size: calc(1.1 * var(--index));
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #7a7a7a;
+    }
+
+    .input {
+        width: 100%;
+    }
+
+    .form_button:hover {
+        cursor: pointer;
+    }
+
+    .input[name="message"] {
+        padding-right: calc(3.5 * var(--index));;
+    }
+
+</style>
+<script>
+    let inp = document.querySelector(".input[name='message']"),
+        ind = document.querySelector(".indicator");
+
+    inp.onkeyup = function () {
+        ind.innerHTML = (256 - inp.value.length).toString();
+    }
+    inp.onkeydown = inp.onkeyup
+</script>
+</html>

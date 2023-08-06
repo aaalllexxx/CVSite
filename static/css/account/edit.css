@@ -1,0 +1,35 @@
+.file_input {
+    width: 100%;
+    background-color: #da0101;
+    overflow: hidden;
+    border-radius: 5px;
+    visibility: hidden;
+    padding: calc(1.2 * var(--index));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+}
+
+.input {
+    width: 100%;
+}
+
+.file_input:before {
+    content: "Выберите фото профиля";
+    font-size: calc(1.2 * var(--index));
+    width: 100%;
+    height: 100%;
+    left: 0;
+    background-color: #006fff;
+    top: 0;
+    position: absolute;
+    visibility: initial;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.file_input:hover {
+    cursor: pointer;
+}

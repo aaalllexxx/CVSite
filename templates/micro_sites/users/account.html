@@ -21,28 +21,31 @@
         <div class="content">
             <h2 class="title">Feedback</h2>
             <div class="button">
-                <a href="#" class="button_link">Оставить вопрос</a>
+                <a href="/user/question" class="button_link">Оставить вопрос</a>
             </div>
             <div class="button">
                 <a href="#" class="button_link">Чат</a>
             </div>
             <h2 class="title">Баллы</h2>
             <div class="button">
-                <a href="/share" class="button_link">Поделиться баллами</a>
+                <a href="/user/share" class="button_link">Поделиться баллами</a>
             </div>
             <h2 class="title">Аккаунт</h2>
             <div class="button">
-                <a href="#" class="button_link">Редактировать</a>
+                <a href="/user/edit" class="button_link">Редактировать</a>
+            </div>
+            <div class="button">
+                <a href="#" class="button_link">Выйти</a>
             </div>
             <div class="button">
                 <a href="#" class="button_link" style="color: #da0101">Удалить</a>
             </div>
         </div>
     </body>
+    {% include 'micro_sites/users/styles.html' %}
     <style>
         .head {
             background-image: url("{{user.bg_image}}");
-            background-position: 0 -300px;
         }
     </style>
 </html>

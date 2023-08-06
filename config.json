@@ -4,7 +4,9 @@
   "routes": {
     "/": "HomeScreen",
     "/index": "HomeScreen",
-    "/account": "AccountScreen",
-    "/share": "ShareScreen"
+    "/user/account": "AccountScreen",
+    "/user/share": "ShareScreen",
+    "/user/question": "QuestionScreen",
+    "/user/edit": "EditScreen"
   }
 }

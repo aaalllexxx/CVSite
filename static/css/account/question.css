@@ -1,0 +1,12 @@
+.error, .success {
+    text-align: center;
+    font-size: calc(1.2 * var(--index));
+}
+
+.error {
+    color: #da0101;
+}
+
+.success {
+    color: green;
+}

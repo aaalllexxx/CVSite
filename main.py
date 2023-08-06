@@ -17,9 +17,11 @@ app = MyApp()
 gs = GlobalStorage()
 db = SQLAlchemy(gs.app)
 gs.db = db
+gs.base_dir = base_dir
 app.app.secret_key = os.urandom(12).hex()
 if __name__ == "__main__":
     from models.User import User
+    from models.Response import Response
 
     app.set_root_folder(base_dir)
     with app.app.app_context():
