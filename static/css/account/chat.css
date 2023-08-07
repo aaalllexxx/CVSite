@@ -1,0 +1,80 @@
+.message_form {
+    width: calc(100% - 20px);
+    position: fixed;
+    left: 10px;
+    bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    height: calc(3 * var(--index));
+}
+.message_form *{
+    height: 100%;
+}
+.message_input {
+    width: 80%;
+    border: none;
+    box-shadow: #006fff 0 0 2px;
+    font-size: calc(1.5 * var(--index));
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.send {
+    width: 19%;
+    border-radius: 5px;
+    border: none;
+    background-color: #006fff;
+    color: white;
+    font-size: calc(1 * var(--index));
+}
+
+.messages_block {
+    width: 100%;
+    padding: 5px 5px calc(3 * var(--index) + 50px);
+}
+
+.image_block {
+    width: calc(4 * var(--index));
+    height: calc(4 * var(--index));
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.img {
+    width: 100%;
+}
+
+.message {
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    background-color: rgba(246, 246, 246, 0.55);
+    border-radius: 10px;
+    margin: 5px;
+}
+.right, .left {
+    padding: 0 calc(.5 * var(--index));
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.sender_name {
+    font-size: calc(1.2 * var(--index));
+    width: max-content;
+    color: #006fff;
+}
+
+.sender_message {
+    font-size: calc(1 * var(--index));
+    width: max-content;
+    color: #494949;
+}
+
+.my {
+    justify-content: flex-end;
+}

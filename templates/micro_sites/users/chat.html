@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{user.name}} - chat</title>
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/account/main.css">
+    <link rel="stylesheet" href="/static/css/account/chat.css">
+</head>
+<body>
+<div class="head">
+    <div class="head_inner">
+        <div class="image_mask">
+            <img src="{{user.image}}" alt="logo" class="image">
+        </div>
+        <div class="right">
+            <p class="name">{{user.name}} <span style="font-weight: 300">#{{user.id}}</span></p>
+            <p class="points">{{user.points}} points</p>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="messages_block">
+
+    </div>
+    <form action="/user/chat" method="post" class="message_form">
+        <input type="text" name="message" class="message_input">
+        <input type="submit" value="Отправить" class="send">
+    </form>
+</div>
+</body>
+{% include 'micro_sites/users/styles.html' %}
+
+<script>
+    let output = document.querySelector(".messages_block")
+    let title = document.querySelector("title")
+    const userAction = async () => {
+        const response = await fetch('/api/get_messages');
+        resp = ""
+        const myJson = await response.json(); //extract JSON from the http response
+        for (let i = 0; i < myJson.length; i++) {
+            if ("{{user.name}}" !== myJson[i].name) {
+                if (i === 0 || i !== 0 && myJson[i - 1].name !== myJson[i].name) {
+                    if (i !== myJson.length - 1 && myJson[i + 1].name !== myJson[i].name) {
+                        resp += `<div class="message">
+                                        <div class="image_block">
+                                            <img src="${myJson[i].image}" alt="" class="img">
+                                        </div>
+                                        <div class="right">
+                                            <h3 class="sender_name">${myJson[i].name}</h3>
+                                            <h4 class="sender_message">${myJson[i].message}</h4>
+                                        </div>
+                                    </div>`
+                    } else if (i !== myJson.length - 1) {
+                        resp += `<div class="message" style="margin-bottom: 0; border-radius: 10px 10px 0 0">
+                                        <div class="image_block">
+
+                                        </div>
+                                        <div class="right">
+                                            <h3 class="sender_name">${myJson[i].name}</h3>
+                                            <h4 class="sender_message">${myJson[i].message}</h4>
+                                        </div>
+                                    </div>`
+                    } else {
+                        resp += `<div class="message">
+                                        <div class="image_block">
+                                            <img src="${myJson[i].image}" alt="" class="img">
+                                        </div>
+                                        <div class="right">
+                                            <h3 class="sender_name">${myJson[i].name}</h3>
+                                            <h4 class="sender_message">${myJson[i].message}</h4>
+                                        </div>
+                                    </div>`
+                    }
+                } else {
+                    if (i !== 0 && myJson[i - 1].name === myJson[i].name && i !== myJson.length - 1 && myJson[i + 1].name === myJson[i].name) {
+                        resp += `<div class="message" style="margin:0 0 0 5px; border-radius: 0 0 0 0">
+                                        <div class="image_block">
+                                        </div>
+                                        <div class="right">
+                                            <h4 class="sender_message">${myJson[i].message}</h4>
+                                        </div>
+                                     </div>`
+                    } else
+                        resp += `<div class="message" style="margin-top: 0; border-radius: 0 0 10px 10px">
+                                        <div class="image_block">
+                                            <img src="${myJson[i].image}" alt="" class="img">
+                                        </div>
+                                        <div class="right">
+                                            <h4 class="sender_message">${myJson[i].message}</h4>
+                                        </div>
+                                    </div>`
+                }
+            } else {
+                if (i === 0 || i !== 0 && myJson[i - 1].name !== myJson[i].name) {
+                    if (i !== myJson.length - 1 && myJson[i + 1].name !== myJson[i].name) {
+                        resp += `<div class="message my">
+                                        <div class="left">
+                                            <h4 class="sender_message">${myJson[i].message}</h4>
+                                        </div>
+                                        <div class="image_block">
+                                            <img src="${myJson[i].image}" alt="" class="img">
+                                        </div>
+                                    </div>`
+                    } else if (i !== myJson.length - 1) {
+                        resp += `<div class="message my" style="margin-bottom: 0; border-radius: 10px 10px 0 0">
+                                <div class="left">
+                                    <h4 class="sender_message">${myJson[i].message}</h4>
+                                </div>
+                                <div class="image_block">
+                                </div>
+                            </div>`
+                    } else {
+                        resp += `<div class="message my">
+                            <div class="left">
+                                <h4 class="sender_message">${myJson[i].message}</h4>
+                            </div>
+                            <div class="image_block">
+                                <img src="${myJson[i].image}" alt="" class="img">
+                            </div>
+                        </div>`
+                    }
+                } else {
+                    if (i !== 0 && myJson[i - 1].name === myJson[i].name && i !== myJson.length - 1 && myJson[i + 1].name === myJson[i].name) {
+                        resp += `<div class="message my" style="margin:0 0 0 5px; border-radius: 0 0 0 0">
+                                        <div class="left">
+                                            <h4 class="sender_message">${myJson[i].message}</h4>
+                                        </div>
+                                        <div class="image_block">
+                                        </div>
+                                     </div>`
+                    } else {
+                        resp += `<div class="message my" style="margin-top: 0; border-radius: 0 0 10px 10px">
+                                        <div class="left">
+                                            <h4 class="sender_message">${myJson[i].message}</h4>
+                                        </div>
+                                        <div class="image_block">
+                                            <img src="${myJson[i].image}" alt="" class="img">
+                                        </div>
+                                     </div>`
+                    }
+
+                }
+            }
+        }
+        if (resp != output.innerHTML) {
+            output.innerHTML = resp
+            if (document.hidden)
+                title.innerHTML = "Новое сообщение"
+            else
+                title.innerHTML = "{{user.name}} - chat"
+        }
+        let input = document.querySelector("input[type='text']");
+
+        document.onkeydown = input.onfocus = function() {
+            input.focus();
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+    }
+
+    userAction()
+
+    setInterval(userAction, 1500)
+</script>
+
+<style>
+    .error {
+        color: red;
+        text-align: center;
+        padding: 5px;
+        font-size: calc(1.2 * var(--index));
+    }
+</style>
+</html>

@@ -9,6 +9,8 @@
     "/user/question": "QuestionScreen",
     "/user/edit": "EditScreen",
     "/user/exit": "ExitScreen",
-    "/user/login": "LoginScreen"
+    "/user/login": "LoginScreen",
+    "/user/chat": "ChatScreen",
+    "/api/get_messages": "GetMessagesApi"
   }
 }
