@@ -19,18 +19,21 @@ db = SQLAlchemy(gs.app)
 gs.db = db
 gs.base_dir = base_dir
 app.app.secret_key = os.urandom(12).hex()
-if __name__ == "__main__":
-    from models.User import User
-    from models.Response import Response
-    from models.Messsge import Message
+from models.Response import Response
+from models.Messsge import Message
 
-    app.set_root_folder(base_dir)
-    with app.app.app_context():
-        db.create_all()
-        user = User.query.filter_by(id=1).first()
-        if not user:
-            admin = User(name="Alex Abdelnur", image="", points=999999999)
-            db.session.add(admin)
-            db.session.commit()
-    app.load_config(base_dir + "/config.json")
+capp = app.app
+from models.User import User
+
+app.set_root_folder(base_dir)
+with app.app.app_context():
+    db.create_all()
+    user = User.query.filter_by(id=1).first()
+    if not user:
+        admin = User(name="Alex Abdelnur", image="", points=999999999)
+        db.session.add(admin)
+        db.session.commit()
+app.load_config(base_dir + "/config.json")
+app.init()
+if __name__ == "__main__":
     app.run("0.0.0.0", 80, debug=True)

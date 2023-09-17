@@ -1,11 +1,14 @@
 .message_form {
     width: calc(100% - 20px);
     position: fixed;
-    left: 10px;
+    left: 50%;
     bottom: 40px;
     display: flex;
     justify-content: space-between;
     height: calc(3 * var(--index));
+    max-width: 900px;
+    margin: 0 auto;
+    transform: translateX(-50%);
 }
 .message_form *{
     height: 100%;

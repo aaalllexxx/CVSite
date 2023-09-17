@@ -2,15 +2,15 @@
   "debug": 1,
   "screenImportPath": "screens",
   "routes": {
-    "/": "HomeScreen",
-    "/index": "HomeScreen",
-    "/user/account": "AccountScreen",
-    "/user/share": "ShareScreen",
-    "/user/question": "QuestionScreen",
-    "/user/edit": "EditScreen",
-    "/user/exit": "ExitScreen",
-    "/user/login": "LoginScreen",
-    "/user/chat": "ChatScreen",
-    "/api/get_messages": "GetMessagesApi"
+    "/": "users/HomeScreen",
+    "/index": "users/HomeScreen",
+    "/user/account": "users/AccountScreen",
+    "/user/share": "users/ShareScreen",
+    "/user/question": "users/QuestionScreen",
+    "/user/edit": "users/EditScreen",
+    "/user/exit": "users/ExitScreen",
+    "/user/login": "users/LoginScreen",
+    "/user/chat": "users/ChatScreen",
+    "/api/get_messages": "users/GetMessagesApi"
   }
 }

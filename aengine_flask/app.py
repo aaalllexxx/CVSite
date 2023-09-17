@@ -48,13 +48,13 @@ class App:
     def load_config(self, path):
         self.config = JsonDict(path)
         if self.config.get('screenImportPath'):
-            import_path = self.config['screenImportPath'] + "."
+            import_path = self.config['screenImportPath'].replace("/", ".") + "."
         else:
             import_path = ""
         if self.config.get("routes"):
             if isinstance(self.config.routes, dict):
                 for k, v in self.config.routes.items():
-                    screen = import_module(f"{import_path}{v}").__getattribute__(v)()
+                    screen = import_module(f"{import_path}{v.replace('/', '.')}").__getattribute__(v.split('/')[-1])()
                     if hasattr(screen, "options"):
                         options = screen.options
                     else:
